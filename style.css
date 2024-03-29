@@ -20,7 +20,7 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Lato", sans-serif;
   height: 100vh;
   overflow: hidden;
   background: linear-gradient(45deg, aqua, rgb(0, 153, 153));
@@ -77,16 +77,18 @@ header {
   background-color: rgba(0, 81, 255, 0.4);
 }
 
-.todo_name {
+.todo_name,
+.search {
   width: 80%;
   height: 40px;
   border-radius: 5px;
   padding-left: 20px;
+  margin-top: 5px;
 }
 
 .add_todo {
   width: 80%;
-  margin: 10px 0;
+  margin: 5px 0;
   height: 40px;
   background-color: rgba(0, 81, 255, 0.4);
   color: white;

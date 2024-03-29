@@ -1,4 +1,5 @@
 let newToDo = document.querySelector(".todo_name");
+let searchToDo = document.querySelector(".search");
 let addToDo = document.querySelector(".add_todo");
 let todo_wrapper = document.querySelector(".wrapper");
 let mode = document.querySelector(".mode");
@@ -41,6 +42,22 @@ addToDo.addEventListener("click", () => {
   }
   newToDo.value = "";
 });
+
+searchToDo.addEventListener("input", filterToDo);
+
+function filterToDo() {
+  const searchText = searchToDo.value.toLowerCase();
+  const todoItems = todo_wrapper.querySelectorAll(".item");
+
+  todoItems.forEach((item) => {
+    const itemText = item.innerText.toLowerCase();
+    if (itemText.includes(searchText)) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
 
 mode.addEventListener("click", () => {
   let isBlackMode = document.body.classList.contains("black-bg");
