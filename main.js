@@ -1,37 +1,45 @@
-let displayButton = document.getElementById("butt");
-let textInput = document.getElementById("myInput");
-let changeColor = document.getElementById("changeColor")
+let newToDo = document.querySelector(".todo_name");
+let addToDo = document.querySelector(".add_todo");
+let todo_wrapper = document.querySelector(".wrapper");
+let mode = document.querySelector(".mode");
+let todo = [];
 
-displayButton.addEventListener("click", function() {
-    if(textInput.value != ""){
-    let newDiv = document.createElement("div");
-    
-    newDiv.textContent = textInput.value;
-    newDiv.classList.add("it");
+addToDo.addEventListener("click", () => {
+  if (newToDo.value != "") {
+    todo.push(newToDo.value);
 
-    textInput.value = ""
+    let newToDo_list = document.createElement("div");
+    newToDo_list.className = "item";
 
-    let removeButton = document.createElement("button");
-    removeButton.textContent = "-";
-    removeButton.classList.add("removeButton");
-    removeButton.onclick = function() {
-        newDiv.remove();
-    };
+    for (let i = 0; i < todo.length; i++) {
+      newToDo_list.innerHTML = newToDo.value;
+      todo_wrapper.appendChild(newToDo_list);
+    }
+    if (todo.length > 0) {
+      let item = document.querySelectorAll(".item");
+      for (let j = 0; j < item.length; j++) {
+        let delete_todo = document.createElement("div");
+        delete_todo.className = "delete";
+        delete_todo.innerHTML = "X";
+        item[j].appendChild(delete_todo);
 
-    newDiv.appendChild(removeButton);
-
-    document.getElementById("list").appendChild(newDiv);
-}
+        delete_todo.addEventListener("click", () => {
+          todo_wrapper.removeChild(item[j]);
+        });
+      }
+    }
+    newToDo.value = "";
+  }
 });
 
-changeColor.addEventListener("click", function(){
-    let color = document.body.style.backgroundColor
+mode.addEventListener("click", () => {
+  let isBlackMode = document.body.classList.contains("black-bg");
 
-    if(color != "white"){
-        document.body.style.backgroundColor = "white";
-    }
-    else{
-        document.body.style.backgroundColor = "black";
-    };
-})
-
+  if (isBlackMode) {
+    document.body.classList.remove("black-bg");
+    mode.innerHTML = "☀️";
+  } else {
+    document.body.classList.add("black-bg");
+    mode.innerHTML = "🌙";
+  }
+});
