@@ -12,26 +12,34 @@ addToDo.addEventListener("click", () => {
     let newToDo_list = document.createElement("li");
     newToDo_list.className = "item drag-item";
     newToDo_list.draggable = "true";
+    newToDo_list.innerText = newToDo.value;
+    todo_wrapper.appendChild(newToDo_list);
 
-    for (let i = 0; i < todo.length; i++) {
-      newToDo_list.innerText = newToDo.value;
-      todo_wrapper.appendChild(newToDo_list);
-    }
-    if (todo.length > 0) {
-      let item = document.querySelectorAll(".item");
-      for (let j = 0; j < item.length; j++) {
-        let delete_todo = document.createElement("li");
-        delete_todo.className = "delete";
-        delete_todo.innerText = "X";
-        item[j].appendChild(delete_todo);
+    let delete_todo = document.createElement("li");
+    delete_todo.className = "delete";
+    delete_todo.innerText = "X";
+    newToDo_list.appendChild(delete_todo);
 
-        delete_todo.addEventListener("click", () => {
-          todo_wrapper.removeChild(item[j]);
-        });
+    delete_todo.addEventListener("click", () => {
+      todo_wrapper.removeChild(newToDo_list);
+    });
+
+    let done_todo = document.createElement("li");
+    done_todo.className = "done";
+    done_todo.innerText = "✓";
+    newToDo_list.appendChild(done_todo);
+
+    done_todo.addEventListener("click", () => {
+      let isLineThrough = newToDo_list.classList.contains("line-through");
+
+      if (isLineThrough) {
+        newToDo_list.classList.remove("line-through");
+      } else {
+        newToDo_list.classList.add("line-through");
       }
-    }
-    newToDo.value = "";
+    });
   }
+  newToDo.value = "";
 });
 
 mode.addEventListener("click", () => {

@@ -15,6 +15,10 @@
   user-select: none;
 }
 
+.line-through {
+  text-decoration: line-through;
+}
+
 body {
   font-family: sans-serif;
   height: 100vh;
@@ -111,10 +115,18 @@ header {
   list-style-type: none;
 }
 
+.done {
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
 .delete {
   position: absolute;
   right: 10px;
   cursor: pointer;
+  transition: transform 0.5s;
 }
 
 .mode {
@@ -123,6 +135,13 @@ header {
   top: 15%;
   font-size: 30px;
   cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.mode:hover,
+.delete:hover,
+.done:hover {
+  transform: scale(1.3);
 }
 
 .black-bg {
