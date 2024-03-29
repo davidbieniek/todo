@@ -7,12 +7,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>ToDo</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container disable-selection">
       <div class="todo_wrapp">
         <header>
           <h1>ToDo</h1>
@@ -20,7 +21,7 @@
         </header>
         <input type="text" class="todo_name" />
         <button class="add_todo">Add</button>
-        <div class="wrapper"></div>
+        <ul id="dragList" class="wrapper"></ul>
       </div>
     </div>
     <script src="main.js"></script>
