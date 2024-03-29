@@ -16,27 +16,28 @@ addToDo.addEventListener("click", () => {
     newToDo_list.innerText = newToDo.value;
     todo_wrapper.appendChild(newToDo_list);
 
-    let delete_todo = document.createElement("li");
+    let delete_todo = document.createElement("div");
     delete_todo.className = "delete";
-    delete_todo.innerText = "X";
     newToDo_list.appendChild(delete_todo);
 
     delete_todo.addEventListener("click", () => {
       todo_wrapper.removeChild(newToDo_list);
     });
 
-    let done_todo = document.createElement("li");
+    let done_todo = document.createElement("div");
     done_todo.className = "done";
-    done_todo.innerText = "✓";
     newToDo_list.appendChild(done_todo);
 
     done_todo.addEventListener("click", () => {
       let isLineThrough = newToDo_list.classList.contains("line-through");
+      let doneItems = document.querySelector(".done");
 
       if (isLineThrough) {
         newToDo_list.classList.remove("line-through");
+        doneItems.style.backgroundImage = 'url("./src/done.png")';
       } else {
         newToDo_list.classList.add("line-through");
+        doneItems.style.backgroundImage = 'url("./src/done-check.png")';
       }
     });
   }
@@ -103,4 +104,35 @@ todo_wrapper.addEventListener("drop", function handleDrop(event) {
   targetItem.style.borderBottom = "";
   draggedItem.style.opacity = "";
   draggedItem = null;
+});
+
+todo_wrapper.addEventListener("dblclick", function handleDoubleClick(event) {
+  const clickedItem = event.target;
+
+  if (clickedItem.classList.contains("item")) {
+    const originalText = clickedItem.textContent;
+    const deleteDiv = clickedItem.querySelector(".delete");
+    const doneDiv = clickedItem.querySelector(".done");
+
+    const editField = document.createElement("input");
+    editField.type = "text";
+    editField.value = originalText;
+
+    clickedItem.textContent = "";
+    clickedItem.appendChild(editField);
+    clickedItem.appendChild(deleteDiv);
+    clickedItem.appendChild(doneDiv);
+    editField.focus();
+
+    editField.addEventListener("blur", () => {
+      const newText = editField.value;
+      if (newText.trim() === "") {
+        clickedItem.textContent = originalText;
+      } else {
+        clickedItem.textContent = newText;
+      }
+      clickedItem.appendChild(deleteDiv);
+      clickedItem.appendChild(doneDiv);
+    });
+  }
 });

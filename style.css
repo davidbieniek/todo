@@ -118,14 +118,20 @@ header {
 }
 
 .done {
+  background-image: url("./src/done.png");
+  width: 20px;
+  height: 20px;
   position: absolute;
-  right: 30px;
+  right: 40px;
   cursor: pointer;
   transition: transform 0.5s;
 }
 
 .delete {
+  background-image: url("./src/delete.png");
   position: absolute;
+  width: 20px;
+  height: 20px;
   right: 10px;
   cursor: pointer;
   transition: transform 0.5s;
