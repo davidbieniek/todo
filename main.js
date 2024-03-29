@@ -3,6 +3,7 @@ let addToDo = document.querySelector(".add_todo");
 let todo_wrapper = document.querySelector(".wrapper");
 let mode = document.querySelector(".mode");
 let todo = [];
+let draggedItem = null;
 
 addToDo.addEventListener("click", () => {
   if (newToDo.value != "") {
@@ -45,29 +46,19 @@ mode.addEventListener("click", () => {
   }
 });
 
-const dragList = document.getElementById("dragList");
-let draggedItem = null;
-
-dragList.addEventListener("dragstart", function handleDragStart(event) {
+todo_wrapper.addEventListener("dragstart", function handleDragStart(event) {
   draggedItem = event.target;
   event.dataTransfer.effectAllowed = "move";
   event.dataTransfer.setData("text/html", draggedItem.innerHTML);
   event.target.style.opacity = "0.5";
 });
 
-dragList.addEventListener("dragover", function handleDragOver(event) {
+todo_wrapper.addEventListener("dragover", function handleDragOver(event) {
   event.preventDefault();
   event.dataTransfer.dropEffect = "move";
-  const targetItem = event.target;
-  if (
-    targetItem !== draggedItem &&
-    targetItem.classList.contains("drag-item")
-  ) {
-    const boundingRect = targetItem.getBoundingClientRect();
-  }
 });
 
-dragList.addEventListener("drop", function handleDrop(event) {
+todo_wrapper.addEventListener("drop", function handleDrop(event) {
   event.preventDefault();
   const targetItem = event.target;
   if (
